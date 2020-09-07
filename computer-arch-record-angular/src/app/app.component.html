@@ -1,0 +1,71 @@
+<div class="page-container">
+  <div class="content-wrap">
+    <div class="header-udea">
+      <h1><span>Universidad de Antioquia</span></h1>
+      <h1>Arquitectura de computadores - Monitorias</h1>
+    </div>
+    <div>
+      <h2>Mostrando grabaciones para el mes de:</h2>
+      <h2>{{current_month}}</h2>
+    </div>
+    
+    <div class="month-container">
+      <div class="previous-month-button">
+        <button mat-flat-button (click)="getPreviousMonthRecordings()">Anterior mes</button>
+      </div>
+    
+      <div class="next-month-button">
+        <button mat-flat-button (click)="getNextMonthRecordings()">Siguiente mes</button>
+      </div>
+    </div>
+    
+    <div class="table-div">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th class="center-ver-grabacion" mat-header-cell *matHeaderCellDef> Id </th>
+          <td class="center-ver-grabacion" mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="fecha_inicio">
+          <th class="center-ver-grabacion" mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td class="center-ver-grabacion" mat-cell *matCellDef="let element"> {{element.fecha_inicio | date }} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="duracion">
+          <th class="center-ver-grabacion" mat-header-cell *matHeaderCellDef> Duracion </th>
+          <td class="center-ver-grabacion" mat-cell *matCellDef="let element"> {{element.duracion}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="ver_grabacion">
+          <th class="center-ver-grabacion" mat-header-cell *matHeaderCellDef> Ver grabacion </th>
+          <td class="center-ver-grabacion" mat-cell *matCellDef="let element">
+    
+            <a href="{{element.ver_grabacion}}" target="_blank">
+              <button mat-raised-button>Ir a grabacion</button>
+            </a>
+    
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  
+  <footer>
+    <h3>
+      Developed by: Miguel Ángel Naranjo Cano and Andrés Grisales González
+    </h3>
+  </footer>
+</div>
+
+<router-outlet></router-outlet>
